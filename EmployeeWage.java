@@ -19,8 +19,13 @@ class EmployeeCheck extends EmployeeWage
 	}
 	else if (empCheck== IS_PART_TIME )
 	{
+//<<<<<<< UC3-addedPartTime
 		System.out.println("Employee is Part-Time Worker");	
 	    empHrs=4;
+
+		System.out.println("Employee is Absent");	
+	        empHrs=0;
+//>>>>>>> master
 	}
 	else
 	{
