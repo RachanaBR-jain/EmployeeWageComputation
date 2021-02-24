@@ -11,6 +11,21 @@ class EmployeeCheck extends EmployeeWage
 	public void attendance() {
 	int empHrs=0;
 	int empWage=0;
+//<<<<<<< UC4-usingSwitch
+	int empCheck=(int)Math.floor(Math.random()*10)%3;
+	switch(empCheck) {
+		case IS_FULL_TIME:	
+					System.out.println("employee is Present");
+					empHrs=8;
+					break;
+		case IS_PART_TIME:
+					System.out.println("employee is Part-time Employee");
+					empHrs=4;
+					break;
+		default:
+				System.out.println("employee is Absent");
+				empHrs=0;	
+
 	double empCheck=Math.floor(Math.random()*10)%2;
 	if(empCheck== IS_FULL_TIME )
 	{
@@ -31,6 +46,7 @@ class EmployeeCheck extends EmployeeWage
 	{
 		System.out.println("employee is Absent");
 		empHrs=0;	
+
 	}
 	empWage=empHrs*EMP_RATE_PER_HOUR;
 	System.out.println("Emp Wage:"+empWage);
