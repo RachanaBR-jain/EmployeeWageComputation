@@ -19,7 +19,7 @@ class EmployeeCheck extends EmployeeWage
 	else
 	{
 		System.out.println("Employee is Absent");	
-	    empHrs=4;
+	        empHrs=0;
 	}
 	empWage=empHrs*EMP_RATE_PER_HOUR;
 	System.out.println("Emp Wage:"+empWage);
