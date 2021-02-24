@@ -5,6 +5,7 @@ abstract class EmployeeWage1 {
 class EmployeeCheck extends EmployeeWage
 {
 	public static final int IS_FULL_TIME=1;
+	public static final int IS_PART_TIME=2;
 	public static final int EMP_RATE_PER_HOUR=20;
 	
 	public void attendance() {
@@ -16,10 +17,20 @@ class EmployeeCheck extends EmployeeWage
 		System.out.println("Employee is Present");
 		empHrs=8;	
 	}
-	else
+	else if (empCheck== IS_PART_TIME )
 	{
+//<<<<<<< UC3-addedPartTime
+		System.out.println("Employee is Part-Time Worker");	
+	    empHrs=4;
+
 		System.out.println("Employee is Absent");	
 	        empHrs=0;
+//>>>>>>> master
+	}
+	else
+	{
+		System.out.println("employee is Absent");
+		empHrs=0;	
 	}
 	empWage=empHrs*EMP_RATE_PER_HOUR;
 	System.out.println("Emp Wage:"+empWage);
