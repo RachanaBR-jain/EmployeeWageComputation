@@ -1,29 +1,37 @@
-class EmployeeWage
-{
-	public static void main(String[] args) {
-		EmployeeCheck.computeEmpWage("DMart",20,20,100);
-		EmployeeCheck.computeEmpWage("VishalMart",30,25,140);
-
-	}
-}
 abstract  class EmployeeWage1 {
-    abstract void computeEmpWage(String company,int empRatePerHour ,int  
-numOfWorkingDaysS,int maxHoursInMonth); 	
+    abstract void computeEmpWage(); 	
 }
 
-class EmployeeCheck extends EmployeeWage
-{
+class EmployeeCheck extends EmployeeWage1
+{ 
 	public static final int IS_FULL_TIME=1;
-	public static final int IS_PART_TIME=2;  
-	//static method must be called only by class name , be cant craete object of static method
-	public static int computeEmpWage(String company,int empRatePerHour ,int  numOfWorkingDaysS,int maxHoursInMonth )
+	public static final int IS_PART_TIME=2; 
+	private final String company;
+	private final int empRatePerHour;
+	private final int numOfWorkingDays;
+	private final int maxHoursPerMonth;
+	
+	
+	
+   public EmployeeCheck(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+		super();
+		this.company = company;
+		this.empRatePerHour = empRatePerHour;
+		this.numOfWorkingDays = numOfWorkingDays;
+		this.maxHoursPerMonth = maxHoursPerMonth;
+	}
+
+
+
+//implemetation of abstract method 
+	public  void computeEmpWage()
 	{	
 		int empHrs=0;
 		int totalEmpWage=0;
 		int totalEmpHrs=0;
 		int totalWorkingDays=0;
 		
-		while(totalEmpHrs<=maxHoursInMonth && totalWorkingDays < numOfWorkingDaysS )
+		while(totalEmpHrs<=maxHoursPerMonth && totalWorkingDays < numOfWorkingDays )
 		{
 			totalWorkingDays++;
 			int empCheck=(int)Math.floor(Math.random()*10)%3;
@@ -43,10 +51,20 @@ class EmployeeCheck extends EmployeeWage
 			totalEmpHrs+=empHrs;
 			System.out.println("Day: "+totalWorkingDays+" , Emp Hrs: "+totalEmpHrs);
 		}
-		totalEmpWage=totalEmpHrs*empRatePerHour;
+		totalEmpWage=totalEmpHrs * empRatePerHour;
 		System.out.println("___________________");
-		System.out.println("Total Employee Wage for Company:"+company+"is"+totalEmpWage);
-		return totalEmpWage;
+		System.out.println("Total Employee Wage for Company: "+company+" is "+totalEmpWage);
+	}
+}
+class EmployeeWage
+{
+	public static void main(String[] args) {
+		EmployeeCheck dmart= new EmployeeCheck("DMart",20,20,100);
+		EmployeeCheck vishal_mart= new EmployeeCheck("VishalMart",30,25,140);
+		dmart.computeEmpWage();
+		System.out.println("***************************************");
+		vishal_mart.computeEmpWage();
+
 	}
 }
 
