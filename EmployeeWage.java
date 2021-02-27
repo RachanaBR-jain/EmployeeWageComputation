@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 class EmployeeWage implements ITCompanyWage
 {
@@ -5,23 +7,25 @@ class EmployeeWage implements ITCompanyWage
 	public static final int IS_PART_TIME=2; 
 	
 	private int numOfCompany=0;
-	private CompanyEmpWage[] companyEmpWageArray;
+	private List<CompanyEmpWage> companyEmpWageList;
 	
 //created default constructor
 	public EmployeeWage() { 
-	companyEmpWageArray=new CompanyEmpWage[5]; //array of 5 (0,1,2,3,4)
+		companyEmpWageList=new ArrayList<>();
 	}
 @Override
 	public void addCompanyWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth){
-		companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays, maxHoursPerMonth);
+	    CompanyEmpWage companyEmpWage=new  CompanyEmpWage(company, empRatePerHour, numOfWorkingDays,maxHoursPerMonth);
+	    companyEmpWageList.add(companyEmpWage);
 		numOfCompany++; //1,2,3,4
 	} 
 @Override
 	public void computeEmpWage() {
-	for(int i=0;i<numOfCompany;i++)
+	for(int i=0;i<companyEmpWageList.size();i++)
 	{
-		companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i])); //this will call parameterised computeEmpWage and return co
-		System.out.println(companyEmpWageArray[i]);
+	    CompanyEmpWage companyEmpWage=companyEmpWageList.get(i);
+		companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage)); //this will call parameterised computeEmpWage and return co
+		System.out.println(companyEmpWage);
 		System.out.print(" "); 
 		 System.out.println("___________________");	 
 	}
@@ -61,7 +65,7 @@ class EmployeeWage implements ITCompanyWage
 	 
    }
    public static void main(String[] args) {
-   System.out.println("Welcome to Employee Wage Computation Program with Interface");
+   System.out.println("Welcome to Employee Wage Computation Program with Interface using List ");
    ITCompanyWage empwage=new EmployeeWage();
    empwage.addCompanyWage("Dmart",20,10,50);
    empwage.addCompanyWage("Vishal_mart",30,20,40);
