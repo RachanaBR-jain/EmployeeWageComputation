@@ -1,4 +1,5 @@
-class EmployeeWage
+
+class EmployeeWage implements ITCompanyWage
 {
 	public static final int IS_FULL_TIME=1;
 	public static final int IS_PART_TIME=2; 
@@ -10,23 +11,20 @@ class EmployeeWage
 	public EmployeeWage() { 
 	companyEmpWageArray=new CompanyEmpWage[5]; //array of 5 (0,1,2,3,4)
 	}
-
-	private void addCompanyWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth){
+@Override
+	public void addCompanyWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth){
 		companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays, maxHoursPerMonth);
 		numOfCompany++; //1,2,3,4
 	} 
-
-	public  void computeEmpWage()
+@Override
+	public void computeEmpWage() {
+	for(int i=0;i<numOfCompany;i++)
 	{
-		for(int i=0;i<numOfCompany;i++)
-		{
-			companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i])); //this will call parameterised computeEmpWage and return totalEmpWage
-			System.out.println(companyEmpWageArray[i]);
-			System.out.print(" "); 
-			 System.out.println("___________________");	 
-
-			
-		}
+		companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i])); //this will call parameterised computeEmpWage and return co
+		System.out.println(companyEmpWageArray[i]);
+		System.out.print(" "); 
+		 System.out.println("___________________");	 
+	}
 	}
 	
 	public int computeEmpWage(CompanyEmpWage companyEmpWage)
@@ -54,7 +52,7 @@ class EmployeeWage
 						empHrs=0;	 
 			} 
 		
-			totalEmpHrs+=empHrs; 
+			totalEmpHrs+=empHrs;
 			System.out.println("Day: "+totalWorkingDays+" , Emp Hrs: "+totalEmpHrs); 
 		    
 	 }
@@ -63,14 +61,15 @@ class EmployeeWage
 	 
    }
    public static void main(String[] args) {
-   System.out.println("Welcome to Employee Wage Computation Program");
-   EmployeeWage empwage=new EmployeeWage();
+   System.out.println("Welcome to Employee Wage Computation Program with Interface");
+   ITCompanyWage empwage=new EmployeeWage();
    empwage.addCompanyWage("Dmart",20,10,50);
    empwage.addCompanyWage("Vishal_mart",30,20,40);
    empwage.addCompanyWage("Relaience",30,20,60);
    empwage.computeEmpWage();
 		
   }
+
 }
 
 
